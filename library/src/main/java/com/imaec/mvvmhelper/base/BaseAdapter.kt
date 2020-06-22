@@ -23,4 +23,6 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun clearItem() {
         listItem.clear()
     }
+
+    fun getItem(position: Int): Any = listItem[position]
 }

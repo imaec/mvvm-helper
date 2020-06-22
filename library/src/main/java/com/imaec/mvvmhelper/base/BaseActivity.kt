@@ -15,6 +15,5 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val layoutRe
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, layoutResId)
-        binding.lifecycleOwner = this
     }
 }

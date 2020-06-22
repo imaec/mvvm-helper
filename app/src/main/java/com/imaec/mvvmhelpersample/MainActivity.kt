@@ -17,12 +17,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         binding.apply {
+            lifecycleOwner = this@MainActivity
             viewModel = this@MainActivity.viewModel
         }
 
         viewModel.string.observe(this, Observer {
             Log.d(TAG, "    ## $it")
         })
+        viewModel.getData {
+            Log.d(TAG, "    ## getData()")
+        }
     }
 
     fun onClick(view: View) {

@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.imaec.mvvmhelper.ExtensionUtils.set
 import com.imaec.mvvmhelper.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel : BaseViewModel() {
 
@@ -13,5 +17,14 @@ class MainViewModel : BaseViewModel() {
 
     fun setString(str: String) {
         _string.value = str
+    }
+
+    fun getData(callback: () -> Unit) {
+        viewModelScope.launch {
+            withContext(Dispatchers.Default) {
+                delay(3000)
+                launch { callback() }
+            }
+        }
     }
 }
